@@ -5,6 +5,9 @@
 #define NUM_PULSES_MODE1 3
 #define NUM_PULSES_MODE2 2
 
+#define VALUE_BTWN_MODE0_MODE1 256
+#define VALUE_BTWN_MODE1_MODE2 768
+
 uint8_t pulse_detected = false;
 uint8_t num_pulses = 0;
 uint8_t mode = 0;
@@ -30,9 +33,12 @@ void set_freq_output(){
   /*Read Analog Value*/
   uint8_t value = analogRead(DETECT_MODE_PIN);
   /*Evaluate Value*/
-  if(value <= 500){
+  if(value < VALUE_BTWN_MODE0_MODE1)
     mode = 0;
-  }
+  else if(value >= VALUE_BTWN_MODE0_MODE1 && value < VALUE_BTWN_MODE1_MODE2)
+    mode = 1;
+  else 
+    mode = 2;
 }
 
 void detect_pulse(){
