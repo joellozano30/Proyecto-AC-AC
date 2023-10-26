@@ -1,12 +1,6 @@
 #include <Arduino.h>
 #include "gpio.h"
-
-#define NUM_PULSES_MODE0 6
-#define NUM_PULSES_MODE1 3
-#define NUM_PULSES_MODE2 2
-
-#define VALUE_BTWN_MODE0_MODE1 256
-#define VALUE_BTWN_MODE1_MODE2 768
+#include "main.h"
 
 uint8_t pulse_detected = false;
 uint8_t num_pulses = 0;
