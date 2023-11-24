@@ -18,14 +18,11 @@ void generate_wave(uint8_t cant_pulses_mode){
       num_pulses++; // Count Pulse
       pulses_positive++; //
       activate_positive_half();
-      Serial.println("Positive half activated (+)");
     }
     else{
-      //num_pulses = 0;
       pulses_negative++; //
       activate_negative_half();
-      Serial.println("Negative half activated (-)");
-      if(pulses_negative == cant_pulses_mode){
+      if(pulses_negative >= (cant_pulses_mode)){
         num_pulses = 0;
         pulses_positive = 0;
         pulses_negative = 0;
@@ -38,7 +35,7 @@ void generate_wave(uint8_t cant_pulses_mode){
 
 void set_freq_output(){
   /*Read Analog Value*/
-  uint8_t value = analogRead(DETECT_MODE_PIN);
+  int value = analogRead(DETECT_MODE_PIN);
   /*Evaluate Value*/
   if(value < VALUE_BTWN_MODE0_MODE1)
     mode = 0;
@@ -55,16 +52,12 @@ void detect_pulse(){
 void setup(){
   gpio_init();
   Serial.begin(9600);
-  attachInterrupt(digitalPinToInterrupt(DCZ_PIN), detect_pulse, RISING);
+  attachInterrupt(digitalPinToInterrupt(DCZ_PIN), detect_pulse, CHANGE);
   Serial.println("Setup finished");
 }
 
 void loop(){
   set_freq_output();
-  // if(new_mode != mode){
-  //   Serial.print("Change mode to: ");
-  //   Serial.println(new_mode);
-  // }
   switch(mode){
     case 0: /*10 Hz*/
       generate_wave(NUM_PULSES_MODE0);

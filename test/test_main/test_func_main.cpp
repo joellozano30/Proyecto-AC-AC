@@ -38,7 +38,7 @@ void test_generate_wave_mode0(void){
     uint8_t pulses_positive = 0;
     uint8_t pulses_negative = 0;
 
-    for(int i = 0; i < 9; i++){
+    for(int i = 0; i < 24; i++){
         pulse_detected = true;
         if(pulse_detected == true){
             /*Alternate SCR Bridges*/
@@ -48,7 +48,7 @@ void test_generate_wave_mode0(void){
             }
             else{
                 pulses_negative++; //activate_negative_half();
-                if(pulses_negative == NUM_PULSES_MODE0){
+                if(pulses_negative == (NUM_PULSES_MODE0-1)){
                     num_pulses = 0;
                     pulses_positive = 0;
                     pulses_negative = 0;
@@ -59,7 +59,7 @@ void test_generate_wave_mode0(void){
         }
     }
     TEST_ASSERT_EQUAL(6, pulses_positive);
-    TEST_ASSERT_EQUAL(3, pulses_negative);
+    TEST_ASSERT_EQUAL(6, pulses_negative);
 
 }
 

@@ -26,12 +26,12 @@ void activate_positive_half(void){
     digitalWrite(PULSE2, HIGH);
     digitalWrite(PULSE3, HIGH);
     digitalWrite(PULSE4, HIGH);
-    delay(PULSE_WIDTH);
+    delayMicroseconds(PULSE_WIDTH);
     digitalWrite(PULSE1, LOW);
     digitalWrite(PULSE2, LOW);
     digitalWrite(PULSE3, LOW);
     digitalWrite(PULSE4, LOW);
-    delay(PULSE_WIDTH);
+    delayMicroseconds(PULSE_WIDTH);
 }
 
 void activate_negative_half(void){
@@ -40,11 +40,11 @@ void activate_negative_half(void){
     digitalWrite(PULSE6, HIGH);
     digitalWrite(PULSE7, HIGH);
     digitalWrite(PULSE8, HIGH);
-    delay(PULSE_WIDTH);
+    delayMicroseconds(PULSE_WIDTH);
     digitalWrite(PULSE5, LOW);
     digitalWrite(PULSE6, LOW);
     digitalWrite(PULSE7, LOW);
     digitalWrite(PULSE8, LOW);
-    delay(PULSE_WIDTH);
+    delayMicroseconds(PULSE_WIDTH);
 }
 
